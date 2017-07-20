@@ -28,8 +28,7 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<!-- 拦截所有 -->
-			<mvc:mapping path="/**"/>
+			<mvc:mapping path="/tologin.do"/>
 			<bean class="com.wrw.newsystem.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -19,9 +19,9 @@ public class LoginController {
 	
 	@RequestMapping("/login.do")
 	public String loginUser(User u, ModelMap map){
-		System.out.println(u.getUserName());
-		if (userService.login(u) != null){
-			map.addAttribute("user", userService.login(u));
+		User user = userService.login(u);
+		if (user != null){
+			map.addAttribute("user", user);
 			return "forward:/index.jsp";
 		}
 		return "forward:/login.jsp";
