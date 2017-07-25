@@ -22,15 +22,15 @@ public class testService extends AbstractJUnit4SpringContextTests{
 	@Resource(name = "userService")
 	private UserService userService;
 	
+	
 	@Test//²âÊÔ×¢²á
 	public void testRegist() {
 		User u = new User();
-		u.setUserName("a");
+		u.setUserName("c");
 		u.setUserPassword("c");
-		u.setRegistDate(new Date());
-		User u1 =  userService.regist(u);
-		//Assert.assertEquals(, a.getUserPwd());
-		Assert.assertNotNull(u1);
+		u.prePersist();
+		userService.regist(u);
+		
 	}
 	
 	

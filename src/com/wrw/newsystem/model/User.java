@@ -1,30 +1,42 @@
 package com.wrw.newsystem.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Where;
+
 @Entity
-public class User {
-	/*
-	@Id  
-    @GeneratedValue(generator="system-uuid")  
-    @GenericGenerator(name = "system-uuid",strategy="uuid")  
-    @Column(length=32)  
-	*/
-	@Id
-	@GeneratedValue
-	private Long userId;
+@Table(name = "t_user")
+public class User extends BaseModel{
+	
 	private String userName;
 	private String userPassword;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date registDate;
+	/*@ManyToMany//(mappedBy="userList")
+    @JoinTable(name = "t_user_role", 
+        joinColumns = {@JoinColumn(name = "user_id")}, 
+        inverseJoinColumns = {@JoinColumn(name = "role_id")})
+	*/
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "t_user_role", 
+			joinColumns = {@JoinColumn(name = "user_id")}, 
+			inverseJoinColumns = {@JoinColumn(name = "role_id")})
+	private Set<Role> roleList;
 	
 	public User(){
 		
@@ -38,15 +50,6 @@ public class User {
 	public User(String name, String password, Date date){
 		this.userName = name;
 		this.userPassword = password;
-		this.registDate = date;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 
 	public String getUserName() {
@@ -65,13 +68,4 @@ public class User {
 		this.userPassword = userPassword;
 	}
 
-	public Date getRegistDate() {
-		return registDate;
-	}
-
-	public void setRegistDate(Date registDate) {
-		this.registDate = registDate;
-	}
-
-	
 }

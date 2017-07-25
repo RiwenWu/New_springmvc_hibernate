@@ -57,14 +57,20 @@ public class UserServiceImpl implements UserService{
 			//ÅÐ¶ÏÃû×ÖÊÇ·ñÎ¨Ò»
 			if (!userDao.isExiteName(u.getUserName()))
 				return null;
-			user = userDao.add(u);	
+			userDao.add(u);	
 			ts.commit();
 		}catch (Exception e) {
 			if (ts != null) {
 				ts.rollback();
 			}
 		}
-		return user;
+		return u;
+	}
+
+	@Override
+	public User findByUerName(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

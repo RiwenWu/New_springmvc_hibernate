@@ -6,11 +6,11 @@ import com.wrw.newsystem.model.User;
 
 public interface UserDao {
 	
-	User add(User u);
+	void add(User u);
 	
 	Boolean isExiteName(String username);
 	
-	User deleteByuserId(String userId);
+	User deleteByuserName(String userName);
 	
 	List<User> finalAll();
 	

@@ -22,13 +22,12 @@ public class UserDaoImpl implements UserDao{
     }
 	
 	@Override
-	public User add(User u) {
+	public void add(User u) {
 		this.getCurrentSession().save(u);
-		return u;
 	}
 
 	@Override
-	public User deleteByuserId(String userId) {
+	public User deleteByuserName(String userName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
