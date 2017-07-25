@@ -20,8 +20,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Where;
 
-@Entity
-@Table(name = "t_user")
+@Entity(name = "t_user")
 public class User extends BaseModel{
 	
 	private String userName;
