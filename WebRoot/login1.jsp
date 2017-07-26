@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>regist</title>
+    <title>login</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -38,24 +38,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="message warning">
 <div class="inset">
 	<div class="login-head">
-		<h1>Regist Form</h1>
+		<h1>Login Form</h1>
 		 <div class="alert-close"> </div> 			
 	</div>
-		<form action="regist.do">
+		<form action="login.do">
 			<li>
 				<input type="text" class="text" name="userName" value="userName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}"><a href="#" class=" icon user"></a>
 			</li>
 				<div class="clear"> </div>
 			<li>
-				<input type="password" name="userPwd1" value="userPwd1" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"> <a href="#" class="icon lock"></a>
-			</li>
-			<div class="clear"> </div>
-			<li>
-				<input type="password" name="userPwd2" value="userPwd2" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"> <a href="#" class="icon lock"></a>
+				<input type="password" name="userPassword" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"> <a href="#" class="icon lock"></a>
 			</li>
 			<div class="clear"> </div>
 			<div class="submit">
-				<input type="submit" onclick="myFunction()" value="regist" >
+				<input type="submit" onclick="myFunction()" value="Sign in" >
+				<h4><a href="toregist.do">зЂВс</a></h4>
+						  <div class="clear">  </div>	
 			</div>
 				
 		</form>

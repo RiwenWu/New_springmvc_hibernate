@@ -1,6 +1,9 @@
 package com.wrw.newsystem.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -49,14 +52,14 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User regist(User u) {
+	public void regist(User u) {
 		Transaction ts = null;
 		User user = null;
 		try {
 			ts = getCurrentSession().beginTransaction();
 			//ÅÐ¶ÏÃû×ÖÊÇ·ñÎ¨Ò»
 			if (!userDao.isExiteName(u.getUserName()))
-				return null;
+				ts.rollback();
 			userDao.add(u);	
 			ts.commit();
 		}catch (Exception e) {
@@ -64,13 +67,36 @@ public class UserServiceImpl implements UserService{
 				ts.rollback();
 			}
 		}
-		return u;
 	}
 
 	@Override
 	public User findByUerName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Transaction ts = null;
+		User user = null;
+		try {
+	        user = userDao.findByName(name);
+			ts.commit();
+		}catch (Exception e) {
+			if (ts != null) {
+				ts.rollback();
+			}
+		}
+		return user;
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		Transaction ts = null;
+		List list = null;
+		try {
+	        list = userDao.finalAll();
+			ts.commit();
+		}catch (Exception e) {
+			if (ts != null) {
+				ts.rollback();
+			}
+		}
+		return list;
 	}
 	
 	

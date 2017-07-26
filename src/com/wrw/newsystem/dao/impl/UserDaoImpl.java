@@ -1,6 +1,8 @@
 package com.wrw.newsystem.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,7 +14,7 @@ import com.wrw.newsystem.dao.UserDao;
 import com.wrw.newsystem.model.User;
 
 @Repository("userDao")
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -34,8 +36,8 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public List<User> finalAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from User u";
+		return this.find(hql);
 	}
 
 	@Override
@@ -56,5 +58,15 @@ public class UserDaoImpl implements UserDao{
 		List list = query.list(); 
 		return list.isEmpty();
 	}
+
+	@Override
+	public User findByName(String username) {
+		String hql = "from User u where u.username = :name";
+		Map<String, Object> params = new HashMap<>();
+        params.put("name", username);
+        return this.findUniqueResult(hql, params);
+	}
+	
+	
 
 }

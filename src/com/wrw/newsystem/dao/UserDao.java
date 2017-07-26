@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.wrw.newsystem.model.User;
 
-public interface UserDao {
+public interface UserDao extends BaseDao<User>{
 	
 	void add(User u);
 	
@@ -15,4 +15,6 @@ public interface UserDao {
 	List<User> finalAll();
 	
 	User login(User u);
+	
+	User findByName(String username);
 }

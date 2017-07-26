@@ -17,7 +17,7 @@ import com.wrw.newsystem.service.UserService;
 
 
 @ContextConfiguration("classpath:applicationContent.xml")
-public class testService extends AbstractJUnit4SpringContextTests{
+public class testuserService extends AbstractJUnit4SpringContextTests{
 
 	@Resource(name = "userService")
 	private UserService userService;

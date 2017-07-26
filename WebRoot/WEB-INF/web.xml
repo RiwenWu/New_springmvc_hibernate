@@ -18,7 +18,7 @@
         </param-value>  
     </context-param> 
     
-    <!-- 中文乱码 -->
+  <!-- 中文乱码 -->
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -29,8 +29,24 @@
   </filter>
   <filter-mapping>
     <filter-name>encodingFilter</filter-name>
-    <url-pattern>*.do</url-pattern>
+    <url-pattern>*.html</url-pattern>
   </filter-mapping>
+  
+  <!-- Shiro配置 -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <async-supported>true</async-supported>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+  
   
   <!-- 配置spring mvc -->
   <servlet>
